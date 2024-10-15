@@ -122,7 +122,7 @@ namespace UnifiedEducationManagementSystem.Repositories
                 var student = await dbContextOptions.Students
                     .Include(s => s.StudentSubjectEnrollmentEntities) // Include related enrollments
                     .Include(s => s.ActivityLogs) // Include related activity logs
-                    .FirstOrDefaultAsync(s => s.StudentId == studentId); // Use Id property appropriately
+                    .FirstOrDefaultAsync(s => s.StudentId == studentId); // Use Id property
 
                 if (student != null)
                 {
