@@ -29,7 +29,7 @@ namespace UnifiedEducationManagementSystem.Presentation.AdminForms
         private readonly AnimationCollapsed accountAnimation;
         private readonly AnimationCollapsed resetAnimation;
         private readonly UEMPDbContext uEMPDbContext;
-        private BindingList<StudentSubjectEnrollmentEntity> enrollments; // Use BindingList for change notifications
+        private BindingList<StudentSubjectEnrollmentEntity> bindingListEnrollments; // Use BindingList for change notifications
 
         public AdminAssignStudentSubjectForm(IAssignSubjectRepository assignSubjectRepository, IStudentRepository studentRepository)
         {
@@ -61,8 +61,8 @@ namespace UnifiedEducationManagementSystem.Presentation.AdminForms
         public async Task LoadAssignedOrEnrolledStudentAsync()
         {
             var studentSubjectEnrollmentEntities = await assignSubjectRepository.GetAssignedOrEnrolledStudentsAsync();
-            enrollments = new BindingList<StudentSubjectEnrollmentEntity>(studentSubjectEnrollmentEntities.ToList());
-            DGVStudentSubjectEnrolled.DataSource = enrollments;
+            bindingListEnrollments = new BindingList<StudentSubjectEnrollmentEntity>(studentSubjectEnrollmentEntities.ToList());
+            DGVStudentSubjectEnrolled.DataSource = bindingListEnrollments;
         }
 
         private async void AdminAssignStudentSubjectForm_Load(object sender, EventArgs e)
@@ -150,10 +150,10 @@ namespace UnifiedEducationManagementSystem.Presentation.AdminForms
                     if (success)
                     {
                         // Remove from the BindingList
-                        var enrollmentToRemove = enrollments.FirstOrDefault(sse => sse.StudentId == studentId);
+                        var enrollmentToRemove = bindingListEnrollments.FirstOrDefault(sse => sse.StudentId == studentId);
                         if (enrollmentToRemove != null)
                         {
-                            enrollments.Remove(enrollmentToRemove);
+                            bindingListEnrollments.Remove(enrollmentToRemove);
                         }
                     }
                     else
