@@ -30,7 +30,7 @@ static class Program
 
         services.AddDbContext<UEMPDbContext>(options =>
             options.UseSqlServer(
-                "Data Source=DESKTOP-PKBR8TR;Initial Catalog=Unified Education PlatformDB;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;",
+                "Database-Connection-String",
                 sqlServerOptionsAction: sqlOptions =>
                 {
                     sqlOptions.EnableRetryOnFailure(
