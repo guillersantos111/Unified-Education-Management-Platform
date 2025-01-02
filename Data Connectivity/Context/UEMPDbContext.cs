@@ -13,10 +13,6 @@ namespace UnifiedEducationManagementSystem.Data_Connectivity.Data
 {
     public class UEMPDbContext : DbContext
     {
-        public UEMPDbContext()
-        {
-        }
-
         public UEMPDbContext(DbContextOptions<UEMPDbContext> options) : base (options) { }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<RoleEntity> Roles {  get; set; }
